@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Car {
 
 	private static final int MOVE_CRITERIA = 4;
+	private static final String FORMAT_CAR_TO_STRING = "%s : %s";
+	private static final String PROGRESS_STRING = "-";
 	private final String name;
 	private int position = 0;
 
@@ -20,5 +22,17 @@ public class Car {
 	public void move() {
 		if (isMovable())
 			position += 1;
+	}
+
+	private String getProgress() {
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < position; i++)
+			builder.append(PROGRESS_STRING);
+		return builder.toString();
+	}
+
+	@Override
+	public String toString() {
+		return String.format(FORMAT_CAR_TO_STRING, name, getProgress());
 	}
 }
