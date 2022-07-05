@@ -31,6 +31,10 @@ public class Car implements Comparable<Car> {
 		return builder.toString();
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	@Override
 	public String toString() {
 		return String.format(FORMAT_CAR_TO_STRING, name, getProgress());

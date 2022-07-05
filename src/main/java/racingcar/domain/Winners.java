@@ -1,23 +1,21 @@
 package racingcar.domain;
 
-public class Result {
+public class Winners {
 
 	private static final String RESULT_FORMAT = "최종 우승자 : %s";
+	private static final String DELIMITER = ", ";
 	private final Cars cars;
 
-	public Result(Cars cars) {
+	private Winners(Cars cars) {
 		this.cars = cars;
 	}
 
-	public static Result of(Cars cars) {
-		return new Result(cars);
+	public static Winners of(Cars cars) {
+		return new Winners(cars);
 	}
 
 	private String getWinnersToString() {
-		StringBuilder builder = new StringBuilder();
-		for (Car winner : cars.findWinners())
-			builder.append(winner);
-		return builder.toString();
+		return String.join(DELIMITER, cars.findWinners().getNames());
 	}
 
 	@Override
