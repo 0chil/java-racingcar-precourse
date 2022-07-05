@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Collections;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Car implements Comparable<Car> {
@@ -25,10 +27,7 @@ public class Car implements Comparable<Car> {
 	}
 
 	private String getProgress() {
-		StringBuilder builder = new StringBuilder();
-		for (int i = 0; i < position; i++)
-			builder.append(PROGRESS_STRING);
-		return builder.toString();
+		return String.join("", Collections.nCopies(position, PROGRESS_STRING));
 	}
 
 	public String getName() {
