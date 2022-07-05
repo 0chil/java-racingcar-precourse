@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
-	private static final String EXCEPTION_NO_CARS = "없는 차가 있습니다";
+	private static final String EXCEPTION_NO_CARS = "차가 없습니다";
 	private final List<Car> carList;
 
 	public Cars(List<Car> carList) {
