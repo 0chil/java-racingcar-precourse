@@ -11,10 +11,10 @@ import racingcar.view.UserView;
 public class GameControl {
 
 	public void start() {
-		List<String> carNames = UserView.readCarNames();
+		List<String> carNames = readCarNames();
 		List<Car> carList = carNames.stream().map(Car::new).collect(Collectors.toList());
 		Cars cars = new Cars(carList);
-		int trialCount = UserView.readTrialCount();
+		int trialCount = readTrialCount();
 		race(cars, trialCount);
 
 	}
@@ -29,5 +29,23 @@ public class GameControl {
 		result.deleteCharAt(result.length() - 1);
 		UserView.printResult(result.toString());
 		UserView.printWinner(Winners.of(cars).toString());
+	}
+
+	private List<String> readCarNames() {
+		try {
+			return UserView.readCarNames();
+		} catch (IllegalArgumentException e) {
+			UserView.printError(e.getMessage());
+			return readCarNames();
+		}
+	}
+
+	private int readTrialCount() {
+		try {
+			return UserView.readTrialCount();
+		} catch (IllegalArgumentException e) {
+			UserView.printError(e.getMessage());
+			return readTrialCount();
+		}
 	}
 }
