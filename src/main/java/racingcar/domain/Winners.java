@@ -2,7 +2,7 @@ package racingcar.domain;
 
 public class Winners {
 
-	private static final String RESULT_FORMAT = "최종 우승자 : %s";
+	private static final String FORMAT_WINNER = "최종 우승자 : %s";
 	private static final String DELIMITER = ", ";
 	private final Cars cars;
 
@@ -20,6 +20,6 @@ public class Winners {
 
 	@Override
 	public String toString() {
-		return String.format(RESULT_FORMAT, getWinnersToString());
+		return String.format(FORMAT_WINNER, getWinnersToString());
 	}
 }

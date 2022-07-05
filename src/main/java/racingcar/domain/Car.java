@@ -6,8 +6,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Car implements Comparable<Car> {
 
-	private static final int MOVE_CRITERIA = 4;
-	private static final String FORMAT_CAR_TO_STRING = "%s : %s";
+	private static final int MOVE_WHEN_BIGGER_THAN = 4;
+	private static final String FORMAT_CAR = "%s : %s";
 	private static final String PROGRESS_STRING = "-";
 	private final String name;
 	private int position = 0;
@@ -18,7 +18,7 @@ public class Car implements Comparable<Car> {
 
 	private boolean isMovable() {
 		int pickNumber = Randoms.pickNumberInRange(0, 9);
-		return pickNumber >= MOVE_CRITERIA;
+		return pickNumber >= MOVE_WHEN_BIGGER_THAN;
 	}
 
 	public void move() {
@@ -36,7 +36,7 @@ public class Car implements Comparable<Car> {
 
 	@Override
 	public String toString() {
-		return String.format(FORMAT_CAR_TO_STRING, name, getProgress());
+		return String.format(FORMAT_CAR, name, getProgress());
 	}
 
 	@Override
