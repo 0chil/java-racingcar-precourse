@@ -45,7 +45,7 @@ public class UserView {
 		return Integer.parseInt(input);
 	}
 
-	public static void validateTrialCount(String input) {
+	private static void validateTrialCount(String input) {
 		for (char c : input.toCharArray()) {
 			if (c < TRIAL_COUNT_CHAR_MIN || c > TRIAL_COUNT_CHAR_MAX) {
 				throw new IllegalArgumentException(EXCEPTION_TRIAL_COUNT);
