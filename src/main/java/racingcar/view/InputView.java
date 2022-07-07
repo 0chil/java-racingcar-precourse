@@ -17,28 +17,25 @@ public class InputView {
 	private static final char NUMERIC_MAX = '9';
 	private static final String EXCEPTION_TRIAL_COUNT = "시도 횟수는 숫자여야 합니다";
 
-	private InputView() {
-	}
-
-	public static List<String> readCarNames() {
+	public List<String> readCarNames() {
 		System.out.println(PROMPT_CAR_NAME);
 		String input = Console.readLine();
 		return parseCarName(input);
 	}
 
-	private static List<String> parseCarName(String input) {
+	private List<String> parseCarName(String input) {
 		String[] carNames = input.split(CAR_NAME_DELIMITER, DISCARD_TRAILING_BLANK);
 		return Arrays.asList(carNames);
 	}
 
-	public static int readTrialCount() {
+	public int readTrialCount() {
 		System.out.println(PROMPT_TRIAL_COUNT);
 		String input = Console.readLine();
 		validateNumeric(input);
 		return Integer.parseInt(input);
 	}
 
-	private static void validateNumeric(String input) {
+	private void validateNumeric(String input) {
 		for (char c : input.toCharArray()) {
 			if (c < NUMERIC_MIN || c > NUMERIC_MAX) {
 				throw new IllegalArgumentException(EXCEPTION_TRIAL_COUNT);

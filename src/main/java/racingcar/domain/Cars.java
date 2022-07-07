@@ -34,7 +34,7 @@ public class Cars {
 			.collect(Collectors.joining(System.lineSeparator()));
 	}
 
-	private static void validateTrialCount(int trialCount) {
+	private void validateTrialCount(int trialCount) {
 		if (trialCount < TRIAL_COUNT_MIN) {
 			throw new IllegalArgumentException(EXCEPTION_TRIAL_COUNT);
 		}
