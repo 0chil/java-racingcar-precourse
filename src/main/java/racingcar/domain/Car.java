@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Car implements Comparable<Car> {
 
 	private static final int MOVE_WHEN_BIGGER_THAN = 4;
-	private static final String FORMAT_CAR = "%s : %s";
+	private static final String CAR_INFIX = " : ";
 	private static final String PROGRESS_STRING = "-";
 
 	private static final int MIN_NAME_LENGTH = 1;
@@ -50,7 +50,7 @@ public class Car implements Comparable<Car> {
 
 	@Override
 	public String toString() {
-		return String.format(FORMAT_CAR, name, getProgress());
+		return name + CAR_INFIX + getProgress();
 	}
 
 	@Override
