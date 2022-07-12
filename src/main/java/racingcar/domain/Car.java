@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Car implements Comparable<Car> {
 
-	private static final int MOVE_WHEN_BIGGER_THAN = 4;
+	private static final int MOVABLE_THRESHOLD = 4;
 	private static final String CAR_INFIX = " : ";
 	private static final String PROGRESS_STRING = "-";
 
@@ -32,7 +32,7 @@ public class Car implements Comparable<Car> {
 
 	private boolean isMovable() {
 		int pickNumber = Randoms.pickNumberInRange(0, 9);
-		return pickNumber >= MOVE_WHEN_BIGGER_THAN;
+		return pickNumber >= MOVABLE_THRESHOLD;
 	}
 
 	public void move() {
@@ -54,11 +54,11 @@ public class Car implements Comparable<Car> {
 	}
 
 	@Override
-	public int compareTo(Car o) {
-		return this.position - o.position;
+	public int compareTo(Car another) {
+		return this.position - another.position;
 	}
 
-	public boolean isPositionSame(Car o) {
-		return this.position == o.position;
+	public boolean hasSamePositionWith(Car another) {
+		return this.position == another.position;
 	}
 }

@@ -6,13 +6,15 @@ import java.util.stream.IntStream;
 
 public class Cars {
 
-	private static final String EXCEPTION_NO_CARS = "차가 없습니다";
+	private static final String NO_CARS_EXCEPTION_MESSAGE = "차가 없습니다";
 	private static final int TRIAL_COUNT_MIN = 1;
-	private static final String EXCEPTION_TRIAL_COUNT = "시도 횟수는 " + TRIAL_COUNT_MIN + " 이상이어야 합니다";
-	private final List<Car> carList;
+	private static final String EXCEPTION_TRIAL_COUNT =
+		"시도 횟수는 " + TRIAL_COUNT_MIN + " 이상이어야 합니다";
 
-	public Cars(List<Car> carList) {
-		this.carList = carList;
+	private final List<Car> cars;
+
+	private Cars(List<Car> carList) {
+		this.cars = carList;
 	}
 
 	public static Cars ofNames(List<String> names) {
@@ -23,7 +25,7 @@ public class Cars {
 	}
 
 	private String race() {
-		carList.forEach(Car::move);
+		cars.forEach(Car::move);
 		return this.toString();
 	}
 
@@ -41,25 +43,28 @@ public class Cars {
 	}
 
 	private Car findMaxCar() {
-		return carList.stream().max(Car::compareTo)
-			.orElseThrow(() -> new IllegalArgumentException(EXCEPTION_NO_CARS));
+		return cars.stream()
+			.max(Car::compareTo)
+			.orElseThrow(() -> new IllegalArgumentException(NO_CARS_EXCEPTION_MESSAGE));
 	}
 
 	public Cars findWinners() {
 		Car maxCar = findMaxCar();
-		List<Car> winners = carList.stream()
-			.filter(maxCar::isPositionSame)
+		List<Car> winners = cars.stream()
+			.filter(maxCar::hasSamePositionWith)
 			.collect(Collectors.toList());
 		return new Cars(winners);
 	}
 
 	public List<String> getNames() {
-		return carList.stream().map(Car::getName).collect(Collectors.toList());
+		return cars.stream()
+			.map(Car::getName)
+			.collect(Collectors.toList());
 	}
 
 	@Override
 	public String toString() {
-		return carList.stream()
+		return cars.stream()
 			.map(Car::toString)
 			.map(s -> s + System.lineSeparator())
 			.collect(Collectors.joining());
