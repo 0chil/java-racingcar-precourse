@@ -13,17 +13,16 @@ public class InputView {
 	private static final String CAR_NAME_DELIMITER = ",";
 	private static final int DISCARD_TRAILING_BLANK = -1;
 
-	private static final char NUMERIC_MIN = '0';
-	private static final char NUMERIC_MAX = '9';
+	private static final String REGEX_NUMERIC = "\\d";
 	private static final String EXCEPTION_TRIAL_COUNT = "시도 횟수는 숫자여야 합니다";
 
 	public List<String> readCarNames() {
 		System.out.println(PROMPT_CAR_NAME);
 		String input = Console.readLine();
-		return parseCarName(input);
+		return parseCarNames(input);
 	}
 
-	private List<String> parseCarName(String input) {
+	private List<String> parseCarNames(String input) {
 		String[] carNames = input.split(CAR_NAME_DELIMITER, DISCARD_TRAILING_BLANK);
 		return Arrays.asList(carNames);
 	}
@@ -36,10 +35,8 @@ public class InputView {
 	}
 
 	private void validateNumeric(String input) {
-		for (char c : input.toCharArray()) {
-			if (c < NUMERIC_MIN || c > NUMERIC_MAX) {
-				throw new IllegalArgumentException(EXCEPTION_TRIAL_COUNT);
-			}
+		if (!input.matches(REGEX_NUMERIC)) {
+			throw new IllegalArgumentException(EXCEPTION_TRIAL_COUNT);
 		}
 	}
 }
