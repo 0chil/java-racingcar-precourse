@@ -1,56 +1,42 @@
 package racingcar.domain;
 
-import java.util.Collections;
-
-import camp.nextstep.edu.missionutils.Randoms;
-
 public class Car implements Comparable<Car> {
-
-	private static final int MOVABLE_THRESHOLD = 4;
-	private static final String CAR_INFIX = " : ";
-	private static final String PROGRESS_STRING = "-";
-
-	private static final int MIN_NAME_LENGTH = 1;
-	private static final int MAX_NAME_LENGTH = 5;
-	private static final String EXCEPTION_NAME_LENGTH =
-		"이름의 길이는 " + MIN_NAME_LENGTH + "자 이상 " + MAX_NAME_LENGTH + "자 이하 입니다";
 
 	private final String name;
 	private int position = 0;
 
 	public Car(String name) {
 		this.name = name;
-		validateNameLength();
-	}
-
-	private void validateNameLength() {
-		if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-			throw new IllegalArgumentException(
-				EXCEPTION_NAME_LENGTH);
-		}
-	}
-
-	private boolean isMovable() {
-		int pickNumber = Randoms.pickNumberInRange(0, 9);
-		return pickNumber >= MOVABLE_THRESHOLD;
 	}
 
 	public void move() {
-		if (isMovable())
-			position += 1;
+		position += 1;
 	}
 
-	private String getProgress() {
-		return String.join("", Collections.nCopies(position, PROGRESS_STRING));
+	public int getPosition() {
+		return position;
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * 학습용 주석
+	 * toString()은 출력 로직을 심는 용도보다는 디버깅 용도로 사용하는 것이 좋겠다.
+	 * 1. 출력 로직을 심게 되면 아무리 잘 하려고 해도 클래스가 출력과 연관된다.
+	 * 2. 그렇게 되면 출력 변경을 위해서 해당 클래스를 바꾸어야 한다.
+	 * -> Layer 분리 실패
+	 * *
+	 * 의문사항
+	 * 그렇다면 디버깅 용도로서의 toString()에서 앞, 중간, 뒤의 String들은 상수화 해야 할까?
+	 * 안 하는게 더 잘 보이기도 하는 것 같다.
+	 * 그렇다면 다시 String.format()을 도입?
+	 */
+
 	@Override
 	public String toString() {
-		return name + CAR_INFIX + getProgress();
+		return "Car(name=" + name + ", position=" + position + ")";
 	}
 
 	@Override
