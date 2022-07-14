@@ -17,7 +17,7 @@ public class InputView {
 	private static final String CAR_NAME_DELIMITER = ",";
 	private static final int DISCARD_TRAILING_BLANK = -1;
 
-	private static final String REGEX_NUMERIC = "\\d";
+	private static final String REGEX_NUMERIC = "^\\d*$";
 	private static final String EXCEPTION_TRIAL_COUNT = "시도 횟수는 숫자여야 합니다";
 
 	public List<NameDTO> readCarNames() {
