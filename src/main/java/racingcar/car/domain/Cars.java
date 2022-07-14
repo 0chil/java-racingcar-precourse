@@ -1,9 +1,9 @@
-package racingcar.domain;
+package racingcar.car.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.dto.CarDTO;
+import racingcar.car.strategy.MoveStrategy;
 
 public class Cars {
 

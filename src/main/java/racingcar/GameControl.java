@@ -3,10 +3,10 @@ package racingcar;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.RandomMoveStrategy;
-import racingcar.dto.CarDTO;
+import racingcar.car.domain.Car;
+import racingcar.car.domain.Cars;
+import racingcar.car.strategy.RandomMoveStrategy;
+import racingcar.car.domain.CarDTO;
 import racingcar.dto.NameDTO;
 import racingcar.dto.TrialCountDTO;
 import racingcar.view.InputView;
