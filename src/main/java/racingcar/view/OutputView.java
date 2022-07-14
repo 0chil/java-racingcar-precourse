@@ -51,6 +51,6 @@ public class OutputView {
 	}
 
 	public void printError(String message) {
-		System.err.println(ERROR_PREFIX + message);
+		System.out.println(ERROR_PREFIX + message);
 	}
 }
