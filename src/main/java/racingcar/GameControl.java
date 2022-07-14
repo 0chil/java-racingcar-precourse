@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import racingcar.car.domain.Car;
 import racingcar.car.domain.Cars;
+import racingcar.car.strategy.MoveStrategy;
 import racingcar.car.strategy.RandomMoveStrategy;
 import racingcar.car.domain.CarDTO;
 import racingcar.dto.NameDTO;
@@ -16,10 +17,12 @@ public class GameControl {
 
 	private final InputView inputView;
 	private final OutputView outputView;
+	private final MoveStrategy moveStrategy;
 
-	public GameControl(InputView inputView, OutputView outputView) {
+	public GameControl(InputView inputView, OutputView outputView, MoveStrategy moveStrategy) {
 		this.inputView = inputView;
 		this.outputView = outputView;
+		this.moveStrategy = moveStrategy;
 	}
 
 	public void start() {
@@ -31,7 +34,7 @@ public class GameControl {
 	private void race(Cars cars, int trialCount) {
 		outputView.printResultMessage();
 		for (int i = 0; i < trialCount; i++) {
-			cars.race();
+			cars.race(moveStrategy);
 			List<CarDTO> carDTOs = cars.getCars();
 			outputView.printCars(carDTOs);
 		}
@@ -46,7 +49,7 @@ public class GameControl {
 				.map(NameDTO::getName)
 				.map(Car::new)
 				.collect(Collectors.toList());
-			return new Cars(cars, new RandomMoveStrategy());
+			return new Cars(cars);
 		} catch (IllegalArgumentException e) {
 			outputView.printError(e.getMessage());
 			return getCars();
