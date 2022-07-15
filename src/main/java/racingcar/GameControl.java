@@ -28,6 +28,8 @@ public class GameControl {
 		Cars cars = getCars();
 		int trialCount = readTrialCount();
 		race(cars, trialCount);
+		List<CarDTO> winners = cars.findWinners();
+		outputView.printWinners(winners);
 	}
 
 	private void race(Cars cars, int trialCount) {
@@ -37,8 +39,6 @@ public class GameControl {
 			List<CarDTO> carDTOs = cars.toDTOs();
 			outputView.printCars(carDTOs);
 		}
-		List<CarDTO> winners = cars.findWinners();
-		outputView.printWinners(winners);
 	}
 
 	private Cars getCars() {
