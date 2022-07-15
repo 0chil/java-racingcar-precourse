@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.car.domain.Car;
+import racingcar.car.domain.CarDTO;
 import racingcar.car.domain.Cars;
 import racingcar.car.strategy.MoveStrategy;
-import racingcar.car.strategy.RandomMoveStrategy;
-import racingcar.car.domain.CarDTO;
 import racingcar.dto.NameDTO;
 import racingcar.dto.TrialCountDTO;
 import racingcar.view.InputView;
@@ -32,10 +31,10 @@ public class GameControl {
 	}
 
 	private void race(Cars cars, int trialCount) {
-		outputView.printResultMessage();
+		outputView.printResultStart();
 		for (int i = 0; i < trialCount; i++) {
 			cars.race(moveStrategy);
-			List<CarDTO> carDTOs = cars.getCars();
+			List<CarDTO> carDTOs = cars.toDTOs();
 			outputView.printCars(carDTOs);
 		}
 		List<CarDTO> winners = cars.findWinners();

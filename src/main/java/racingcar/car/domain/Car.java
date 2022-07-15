@@ -4,6 +4,8 @@ import racingcar.car.strategy.MoveStrategy;
 
 public class Car implements Comparable<Car> {
 
+	private static final int MOVE_AMOUNT = 1;
+
 	private final String name;
 	private int position = 0;
 
@@ -12,8 +14,9 @@ public class Car implements Comparable<Car> {
 	}
 
 	public void move(MoveStrategy moveStrategy) {
-		if (moveStrategy.isMovable())
-			position += 1;
+		if (moveStrategy.isMovable()) {
+			position += MOVE_AMOUNT;
+		}
 	}
 
 	public CarDTO toDTO() {

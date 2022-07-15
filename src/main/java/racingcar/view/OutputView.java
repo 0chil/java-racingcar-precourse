@@ -7,16 +7,15 @@ import racingcar.car.domain.CarDTO;
 
 public class OutputView {
 
-	private static final String MESSAGE_RESULT = "실행 결과";
+	private static final String RESULT_START_MESSAGE = "실행 결과";
 	private static final String ERROR_PREFIX = "[ERROR] ";
 	private static final String WINNER_PREFIX = "최종 우승자 : ";
 	private static final String CAR_INFIX = " : ";
 	private static final String NAME_DELIMITER = ", ";
 	private static final String PROGRESS_INDICATOR = "-";
 
-
-	public void printResultMessage() {
-		System.out.println(MESSAGE_RESULT);
+	public void printResultStart() {
+		System.out.println(RESULT_START_MESSAGE);
 	}
 
 	public void printCars(List<CarDTO> carDTOs) {
@@ -40,12 +39,12 @@ public class OutputView {
 	}
 
 	public void printWinners(List<CarDTO> winners) {
-		String winnerNames = getWinnerNames(winners);
+		String winnerNames = joinCarNames(winners);
 		System.out.println(WINNER_PREFIX + winnerNames);
 	}
 
-	private String getWinnerNames(List<CarDTO> winners) {
-		return winners.stream()
+	private String joinCarNames(List<CarDTO> carDTOs) {
+		return carDTOs.stream()
 			.map(CarDTO::getName)
 			.collect(Collectors.joining(NAME_DELIMITER));
 	}
