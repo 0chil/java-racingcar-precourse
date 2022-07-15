@@ -3,7 +3,7 @@ package racingcar.car.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.car.strategy.MoveStrategy;
+import racingcar.car.strategy.MovableStrategy;
 
 public class Cars {
 
@@ -15,9 +15,9 @@ public class Cars {
 		this.cars = cars;
 	}
 
-	public void race(MoveStrategy moveStrategy) {
+	public void race(MovableStrategy movableStrategy) {
 		for (Car car : cars)
-			car.move(moveStrategy);
+			car.move(movableStrategy);
 	}
 
 	private Car findMaxCar() {

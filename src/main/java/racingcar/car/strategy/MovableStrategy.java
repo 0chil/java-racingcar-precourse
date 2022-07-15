@@ -1,6 +1,6 @@
 package racingcar.car.strategy;
 
-public interface MoveStrategy {
+public interface MovableStrategy {
 
 	boolean isMovable();
 }

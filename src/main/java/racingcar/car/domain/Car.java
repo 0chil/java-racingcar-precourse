@@ -1,6 +1,6 @@
 package racingcar.car.domain;
 
-import racingcar.car.strategy.MoveStrategy;
+import racingcar.car.strategy.MovableStrategy;
 
 public class Car implements Comparable<Car> {
 
@@ -13,8 +13,8 @@ public class Car implements Comparable<Car> {
 		this.name = name;
 	}
 
-	public void move(MoveStrategy moveStrategy) {
-		if (moveStrategy.isMovable()) {
+	public void move(MovableStrategy movableStrategy) {
+		if (movableStrategy.isMovable()) {
 			position += MOVE_AMOUNT;
 		}
 	}

@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import racingcar.car.domain.Car;
 import racingcar.car.domain.CarDTO;
 import racingcar.car.domain.Cars;
-import racingcar.car.strategy.MoveStrategy;
+import racingcar.car.strategy.MovableStrategy;
 import racingcar.dto.NameDTO;
 import racingcar.dto.TrialCountDTO;
 import racingcar.view.InputView;
@@ -16,12 +16,12 @@ public class GameControl {
 
 	private final InputView inputView;
 	private final OutputView outputView;
-	private final MoveStrategy moveStrategy;
+	private final MovableStrategy movableStrategy;
 
-	public GameControl(InputView inputView, OutputView outputView, MoveStrategy moveStrategy) {
+	public GameControl(InputView inputView, OutputView outputView, MovableStrategy movableStrategy) {
 		this.inputView = inputView;
 		this.outputView = outputView;
-		this.moveStrategy = moveStrategy;
+		this.movableStrategy = movableStrategy;
 	}
 
 	public void start() {
@@ -33,7 +33,7 @@ public class GameControl {
 	private void race(Cars cars, int trialCount) {
 		outputView.printResultStart();
 		for (int i = 0; i < trialCount; i++) {
-			cars.race(moveStrategy);
+			cars.race(movableStrategy);
 			List<CarDTO> carDTOs = cars.toDTOs();
 			outputView.printCars(carDTOs);
 		}

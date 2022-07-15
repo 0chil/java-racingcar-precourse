@@ -2,7 +2,7 @@ package racingcar.car.strategy;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class RandomMoveStrategy implements MoveStrategy {
+public class RandomMovableStrategy implements MovableStrategy {
 
 	private static final int MOVABLE_THRESHOLD = 4;
 
